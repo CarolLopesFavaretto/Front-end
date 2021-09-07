@@ -16,11 +16,11 @@ export class PostagemService {
     headers: new HttpHeaders().set("Authorization", environment.token)
   }
   getAllPostagens(): Observable<Postagem[]> {
-    return this.http.get<Postagem[]>("http://localhost:8080/postagem/", this.token)
+    return this.http.get<Postagem[]>("https://blogcarollopes.herokuapp.com/postagem/", this.token)
 
   }
   postPostagens(postagem: Postagem): Observable<Postagem> {
     console.log (postagem)
-    return this.http.post<Postagem>("http://localhost:8080/postagem/", postagem, this.token)
+    return this.http.post<Postagem>("https://blogcarollopes.herokuapp.com/postagem/", postagem, this.token)
   }
 }
