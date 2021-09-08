@@ -32,8 +32,8 @@
       <a class="nav-item nav-link active text-secondary font-weight-bold" id="nav-home-tab" data-toggle="tab"
         href="#todasPostagens" role="tab" aria-controls="nav-todasPostagens" aria-selected="true">Todas as Postagens
       </a>
-      <a (click) = "findByIdUser()" class="nav-item nav-link text-secondary font-weight-bold" id="nav-profile-tab" data-toggle="tab"
-        href="#minhasPostagens" role="tab" aria-controls="nav-minhasPostagens" aria-selected="false">Minhas
+      <a class="nav-item nav-link text-secondary font-weight-bold" id="nav-profile-tab" data-toggle="tab"
+        href="#minhasPostagens" role="tab" aria-controls="nav-minhasPostagens" aria-selected="false" (click) = "findByIdUser()">Minhas
         Postagens</a>
       <a class="nav-item nav-link text-secondary font-weight-bold" id="nav-contact-tab" data-toggle="tab"
         href="#postagensTema" role="tab" aria-controls="nav-postagensTema" aria-selected="false">Postagens por Tema</a>
@@ -65,12 +65,27 @@
             <p class="card-text">{{item.texto}}</p>
             <p class="card-text"><small class="text-muted">{{item.date}}</small></p>
             
+            <a [routerLink] = "['/postagem-edit', item.id]" class = "text-info mr-3" href="">Editar</a> 
+            <a [routerLink] = "['/postagem-delete', item.id]" class = "text-danger" href="">Apagar</a> 
+            
           </div>
         </div>
       </div>
     </div>
     <div class="tab-pane fade" id="postagensTema" role="tabpanel" aria-labelledby="nav-postagensTemat-tab">
-      Postagens por Tema
+      
+      <div class="card-columns" *ngFor = 'let tema of listasTema'>
+        <div class="card text-center" *ngFor='let item of tema.postagem'>
+          <div class="card-body">
+            <h5 class="card-title">{{item.titulo}}</h5>
+                     <p class="card-text">{{item.texto}}</p>
+            <p class="card-text"><small class="text-muted">{{item.date}}</small></p>
+            <p class="card-text"><small class="text-muted"> by: {{item.usuario.nome}}</small></p>
+          </div>
+        </div>
+      </div>
+
+
     </div>
   </div>
 </div>
